@@ -155,7 +155,7 @@ const HeroSection = () => {
                             <div className="w-16 h-[1px] bg-brand-light transform -rotate-45 translate-x-8"></div>
                         </div>
 
-                        <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center cursor-pointer group mb-4 md:mb-10">
+                        <div onClick={(e) => handleScroll(e as any, 'about')} className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center cursor-pointer group mb-4 md:mb-10">
                             <div className="absolute inset-0 rounded-full border-[1.5px] border-dashed border-brand-light/60 animate-[spin_20s_linear_infinite]"></div>
                             <div className="absolute inset-0 rounded-full border-[1px] border-brand-light/20 scale-105 animate-[spin_15s_linear_infinite_reverse]"></div>
                             <div className="absolute inset-3 bg-brand-accent rounded-full flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 shadow-xl group-hover:shadow-brand-accent/20 overflow-hidden">
@@ -163,7 +163,7 @@ const HeroSection = () => {
                                 <div className="w-8 h-8 md:w-10 md:h-10 bg-brand-dark rounded-full flex items-center justify-center text-brand-accent mb-1 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform relative z-10">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7" /></svg>
                                 </div>
-                                <span className="text-brand-dark font-bold text-[9px] md:text-[11px] tracking-[0.15em] uppercase relative z-10 text-center">View<br />Work</span>
+                                <span className="text-brand-dark font-bold text-[9px] md:text-[11px] tracking-[0.15em] uppercase relative z-10 text-center">Explore<br />Profile</span>
                             </div>
                         </div>
                     </div>
