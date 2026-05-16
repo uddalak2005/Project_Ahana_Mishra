@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #00111c;
+  --color-brand-dark: #1A1A1A;
+  --color-brand-light: #E8DCCB;
+  --color-brand-accent: #f5e6d3;
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-light);
+  overflow-x: hidden;
+}
