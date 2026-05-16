@@ -1,21 +1,34 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { galleryArtworks } from '../data/artworks';
+import { client, urlFor } from '../sanityClient';
 
-const artworks = galleryArtworks;
+interface SanityArtwork {
+  _id: string;
+  title: string;
+  medium: string;
+  image: any;
+}
 
 const ArtworkGallerySection: React.FC = () => {
+  const [artworks, setArtworks] = useState<SanityArtwork[]>([]);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    client
+      .fetch(`*[_type == "artGallery"] | order(_createdAt asc)`)
+      .then((data) => setArtworks(data))
+      .catch(console.error);
+  }, []);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
   const goPrev = useCallback(() => {
     setLightboxIndex(prev => prev === null ? null : (prev - 1 + artworks.length) % artworks.length);
-  }, []);
+  }, [artworks.length]);
 
   const goNext = useCallback(() => {
     setLightboxIndex(prev => prev === null ? null : (prev + 1) % artworks.length);
-  }, []);
+  }, [artworks.length]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -87,13 +100,15 @@ const ArtworkGallerySection: React.FC = () => {
                 onClick={() => openLightbox(i)}
               >
                 {/* Image */}
-                <img
-                  src={art.src}
+                {art.image && (
+                  <img
+                    src={urlFor(art.image).url()}
                   alt={art.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-                />
+                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+                  />
+                )}
 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-brand-bg/70 flex flex-col justify-end p-5 md:p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
@@ -139,12 +154,14 @@ const ArtworkGallerySection: React.FC = () => {
             onClick={e => e.stopPropagation()}
           >
             {/* Image */}
-            <img
-              src={currentArtwork.src}
-              alt={currentArtwork.title}
-              className="max-w-full max-h-[78vh] object-contain shadow-2xl"
-              style={{ border: '1px solid rgba(232,220,203,0.08)' }}
-            />
+            {currentArtwork.image && (
+              <img
+                src={urlFor(currentArtwork.image).url()}
+                alt={currentArtwork.title}
+                className="max-w-full max-h-[78vh] object-contain shadow-2xl"
+                style={{ border: '1px solid rgba(232,220,203,0.08)' }}
+              />
+            )}
 
             {/* Caption */}
             <div className="mt-4 flex flex-col items-center gap-1">

@@ -6,6 +6,7 @@ import experience from './experience'
 import heroImage from './heroImage'
 import aboutImage from './aboutImage'
 import contactInfo from './contactInfo'
+import artGallery from './artGallery'
 
 export const schemaTypes = [
     academics,
@@ -15,5 +16,6 @@ export const schemaTypes = [
     experience,
     heroImage,
     aboutImage,
-    contactInfo
+    contactInfo,
+    artGallery
 ]
