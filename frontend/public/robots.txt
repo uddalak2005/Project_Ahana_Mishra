@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR_VERCEL_DOMAIN.vercel.app/sitemap.xml
+Sitemap: https://ahanamishra.vercel.app/sitemap.xml
